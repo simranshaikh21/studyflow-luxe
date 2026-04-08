@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, forwardRef, useImperativeHandle } from "react";
 import { Button } from "@/components/ui/button";
 import { Play, Pause, RotateCcw, Coffee } from "lucide-react";
 import { useDeepWork } from "@/contexts/DeepWorkContext";
@@ -6,12 +6,24 @@ import { useDeepWork } from "@/contexts/DeepWorkContext";
 const FOCUS_TIME = 25 * 60;
 const BREAK_TIME = 5 * 60;
 
-const PomodoroTimer = () => {
+export interface PomodoroTimerRef {
+  startTimer: () => void;
+}
+
+const PomodoroTimer = forwardRef<PomodoroTimerRef>((_, ref) => {
   const [timeLeft, setTimeLeft] = useState(FOCUS_TIME);
   const [isRunning, setIsRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
   const [sessions, setSessions] = useState(0);
   const { isDeepWork } = useDeepWork();
+
+  useImperativeHandle(ref, () => ({
+    startTimer: () => {
+      setIsBreak(false);
+      setTimeLeft(FOCUS_TIME);
+      setIsRunning(true);
+    },
+  }));
 
   const totalTime = isBreak ? BREAK_TIME : FOCUS_TIME;
   const progress = ((totalTime - timeLeft) / totalTime) * 100;
@@ -130,6 +142,8 @@ const PomodoroTimer = () => {
       </div>
     </section>
   );
-};
+});
+
+PomodoroTimer.displayName = "PomodoroTimer";
 
 export default PomodoroTimer;
