@@ -8,12 +8,21 @@ const stats = [
   { label: "Efficiency", value: "94%", icon: TrendingUp, change: "+3%" },
 ];
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  onStartStudying?: () => void;
+}
+
+const HeroSection = ({ onStartStudying }: HeroSectionProps) => {
+  const handleStartStudying = () => {
+    if (onStartStudying) {
+      onStartStudying();
+    }
+  };
+
   return (
     <section className="relative pt-32 pb-16 px-6 bg-gradient-hero overflow-hidden">
-      {/* Decorative orbs */}
-      <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-secondary/5 rounded-full blur-3xl" />
+      <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float-slow" />
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-secondary/5 rounded-full blur-3xl animate-float-reverse" />
 
       <div className="container mx-auto relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in-up">
@@ -31,13 +40,16 @@ const HeroSection = () => {
           <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8 leading-relaxed">
             The premium productivity suite designed for students who refuse to settle. Track focus, crush exams, and build unstoppable habits.
           </p>
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-base font-medium tracking-wide rounded-xl glow-primary transition-all hover:glow-primary-intense">
+          <Button
+            size="lg"
+            onClick={handleStartStudying}
+            className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-base font-medium tracking-wide rounded-xl glow-primary transition-all hover:glow-primary-intense"
+          >
             Start Studying
             <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
         </div>
 
-        {/* Bento Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
           {stats.map((stat, i) => (
             <div

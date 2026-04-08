@@ -1,15 +1,36 @@
+import { useRef, useCallback } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import PomodoroTimer from "@/components/PomodoroTimer";
+import PomodoroTimer, { PomodoroTimerRef } from "@/components/PomodoroTimer";
+import WeeklyFocus from "@/components/WeeklyFocus";
+import DailyIntentions from "@/components/DailyIntentions";
 import ExamRoadmap from "@/components/ExamRoadmap";
 import Footer from "@/components/Footer";
+import FloatingOrbs from "@/components/FloatingOrbs";
+import DeepWorkOverlay from "@/components/DeepWorkOverlay";
 
 const Index = () => {
+  const timerRef = useRef<PomodoroTimerRef>(null);
+
+  const handleStartStudying = useCallback(() => {
+    const dashboardEl = document.getElementById("dashboard");
+    if (dashboardEl) {
+      dashboardEl.scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => {
+        timerRef.current?.startTimer();
+      }, 800);
+    }
+  }, []);
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      <FloatingOrbs />
       <Navbar />
-      <HeroSection />
-      <PomodoroTimer />
+      <DeepWorkOverlay />
+      <HeroSection onStartStudying={handleStartStudying} />
+      <PomodoroTimer ref={timerRef} />
+      <WeeklyFocus />
+      <DailyIntentions />
       <ExamRoadmap />
       <Footer />
     </div>
