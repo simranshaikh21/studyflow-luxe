@@ -1,6 +1,7 @@
 import { useDeepWork } from "@/contexts/DeepWorkContext";
+import { useTheme } from "@/hooks/useTheme";
 import { Switch } from "@/components/ui/switch";
-import { Brain, Flame, Shield } from "lucide-react";
+import { Brain, Flame, Shield, Sun, Moon } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
