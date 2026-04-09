@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Plus, GripVertical, Check, Trash2 } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -50,6 +51,7 @@ const ExamRoadmap = () => {
   const [columns, setColumns] = useState<Column[]>(initialColumns);
   const [newTask, setNewTask] = useState<Record<string, string>>({});
   const [draggedTask, setDraggedTask] = useState<{ colId: string; taskId: string } | null>(null);
+  const allTasksCount = columns.reduce((sum, col) => sum + col.tasks.length, 0);
 
   const addTask = (colId: string) => {
     const text = newTask[colId]?.trim();
@@ -105,13 +107,23 @@ const ExamRoadmap = () => {
           </p>
         </div>
 
+        {allTasksCount === 0 ? (
+          <div className="glass-card rounded-3xl p-10 min-h-[300px] flex flex-col items-center justify-center text-center">
+            <Check className="w-12 h-12 text-primary/80 mb-3" />
+            <p className="text-muted-foreground tracking-wide">
+              Your journey to excellence starts with one task.
+            </p>
+          </div>
+        ) : null}
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {columns.map((col) => (
-            <div
+            <motion.div
               key={col.id}
               className="glass-card rounded-2xl p-4 min-h-[300px] flex flex-col"
               onDragOver={(e) => e.preventDefault()}
               onDrop={() => handleDrop(col.id)}
+              whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(180,97,186,0.2)" }}
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
@@ -126,12 +138,19 @@ const ExamRoadmap = () => {
               </div>
 
               <div className="flex-1 space-y-2 mb-3">
-                {col.tasks.map((task) => (
-                  <div
+                {col.tasks.length === 0 ? (
+                  <div className="h-full min-h-[130px] rounded-xl border border-dashed border-[#0082be4d] bg-card/20 flex items-center justify-center px-3 text-center">
+                    <p className="text-xs text-muted-foreground tracking-wide">
+                      Your journey to excellence starts with one task.
+                    </p>
+                  </div>
+                ) : col.tasks.map((task) => (
+                  <motion.div
                     key={task.id}
                     draggable
                     onDragStart={() => handleDragStart(col.id, task.id)}
                     className="flex items-center gap-2 p-3 rounded-xl bg-card/50 border border-border/30 hover:border-primary/30 transition-all cursor-grab active:cursor-grabbing group"
+                    whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(180,97,186,0.18)" }}
                   >
                     <GripVertical className="w-3.5 h-3.5 text-muted-foreground/40 shrink-0" />
                     <span className="text-sm text-foreground flex-1 truncate">{task.title}</span>
@@ -144,7 +163,7 @@ const ExamRoadmap = () => {
                     >
                       <Trash2 className="w-3.5 h-3.5 text-muted-foreground hover:text-destructive" />
                     </button>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 
@@ -165,7 +184,7 @@ const ExamRoadmap = () => {
                   <Plus className="w-4 h-4" />
                 </Button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

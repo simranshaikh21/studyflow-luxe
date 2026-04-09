@@ -2,11 +2,13 @@ import { useDeepWork } from "@/contexts/DeepWorkContext";
 import { useTheme } from "@/hooks/useTheme";
 import { Switch } from "@/components/ui/switch";
 import { Brain, Flame, Shield, Sun, Moon } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
   { to: "/", label: "Dashboard" },
   { to: "/roadmap", label: "Roadmap" },
+  { to: "/syllabus-roadmap", label: "Syllabus Roadmap" },
   { to: "/insights", label: "Insights" },
   { to: "/settings", label: "Settings" },
 ];
@@ -56,9 +58,22 @@ const Navbar = () => {
               className="data-[state=checked]:bg-primary"
             />
           </div>
+          <Popover>
+            <PopoverTrigger asChild>
+              <button
+                className="w-8 h-8 rounded-full bg-muted flex items-center justify-center luxe-hover"
+                aria-label="Show study streak"
+              >
+                <Flame className="w-4 h-4 text-primary" />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="glass-card border border-[#0082be4d] text-sm tracking-wide">
+              You have committed 3 days in a row! Keep the fire burning.
+            </PopoverContent>
+          </Popover>
           <button
             onClick={toggleTheme}
-            className="w-8 h-8 rounded-full bg-muted flex items-center justify-center hover:scale-110 transition-all duration-300"
+            className="w-8 h-8 rounded-full bg-muted flex items-center justify-center luxe-hover"
             aria-label="Toggle theme"
           >
             {theme === "dark" ? (
