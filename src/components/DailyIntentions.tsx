@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Plus, GripVertical, Check, Trash2, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -71,7 +72,10 @@ const DailyIntentions = () => {
           </p>
         </div>
 
-        <div className="glass-card rounded-3xl p-6 md:p-8">
+        <motion.div
+          whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(180,97,186,0.24)" }}
+          className="glass-card rounded-3xl p-6 md:p-8"
+        >
           {/* Progress */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
@@ -90,13 +94,21 @@ const DailyIntentions = () => {
 
           {/* Intentions list */}
           <div className="space-y-2 mb-4">
-            {intentions.map((intention) => (
-              <div
+            {intentions.length === 0 ? (
+              <div className="min-h-[220px] flex flex-col items-center justify-center text-center gap-3 rounded-2xl border border-dashed border-[#0082be4d] bg-card/20">
+                <Sparkles className="w-11 h-11 text-primary/80" />
+                <p className="text-muted-foreground tracking-wide">
+                  Your journey to excellence starts with one task.
+                </p>
+              </div>
+            ) : intentions.map((intention) => (
+              <motion.div
                 key={intention.id}
                 draggable
                 onDragStart={() => handleDragStart(intention.id)}
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={() => handleDrop(intention.id)}
+                whileHover={{ scale: 1.02, boxShadow: "0 0 22px rgba(180,97,186,0.2)" }}
                 className={`flex items-center gap-3 p-3 rounded-xl border transition-all cursor-grab active:cursor-grabbing group ${
                   intention.completed
                     ? "bg-muted/30 border-border/20"
@@ -128,7 +140,7 @@ const DailyIntentions = () => {
                 >
                   <Trash2 className="w-3.5 h-3.5 text-muted-foreground hover:text-destructive" />
                 </button>
-              </div>
+              </motion.div>
             ))}
           </div>
 
@@ -149,7 +161,7 @@ const DailyIntentions = () => {
               <Plus className="w-4 h-4" />
             </Button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { DeepWorkProvider } from "@/contexts/DeepWorkContext";
 import Index from "./pages/Index.tsx";
 import RoadmapPage from "./pages/RoadmapPage.tsx";
+import SyllabusRoadmapPage from "./pages/SyllabusRoadmapPage.tsx";
 import InsightsPage from "./pages/InsightsPage.tsx";
 import SettingsPage from "./pages/SettingsPage.tsx";
 import ChangelogPage from "./pages/ChangelogPage.tsx";
@@ -23,6 +24,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/roadmap" element={<RoadmapPage />} />
+            <Route path="/syllabus-roadmap" element={<SyllabusRoadmapPage />} />
             <Route path="/insights" element={<InsightsPage />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/changelog" element={<ChangelogPage />} />

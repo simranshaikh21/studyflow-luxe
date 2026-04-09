@@ -44,6 +44,15 @@ const PomodoroTimer = forwardRef<PomodoroTimerRef>((_, ref) => {
     return () => clearInterval(id);
   }, [isRunning, isBreak]);
 
+  useEffect(() => {
+    const isStudyTimerActive = isRunning && !isBreak;
+    localStorage.setItem("studyflow-timer-active", isStudyTimerActive ? "true" : "false");
+
+    return () => {
+      localStorage.setItem("studyflow-timer-active", "false");
+    };
+  }, [isRunning, isBreak]);
+
   const reset = useCallback(() => {
     setIsRunning(false);
     setIsBreak(false);
