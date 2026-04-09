@@ -1,5 +1,6 @@
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useState } from "react";
 import Navbar from "@/components/Navbar";
+import CommitScreen from "@/components/CommitScreen";
 import HeroSection from "@/components/HeroSection";
 import PomodoroTimer, { PomodoroTimerRef } from "@/components/PomodoroTimer";
 import WeeklyFocus from "@/components/WeeklyFocus";
@@ -12,6 +13,14 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = () => {
   const timerRef = useRef<PomodoroTimerRef>(null);
+  const [showCommit, setShowCommit] = useState(() => {
+    return !sessionStorage.getItem("studyflow-committed");
+  });
+
+  const handleCommit = useCallback(() => {
+    sessionStorage.setItem("studyflow-committed", "true");
+    setShowCommit(false);
+  }, []);
 
   const handleStartStudying = useCallback(() => {
     const dashboardEl = document.getElementById("dashboard");
@@ -22,6 +31,8 @@ const Index = () => {
       }, 800);
     }
   }, []);
+
+  if (showCommit) return <CommitScreen onCommit={handleCommit} />;
 
   return (
     <div className="min-h-screen bg-background relative">
