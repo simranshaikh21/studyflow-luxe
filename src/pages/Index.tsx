@@ -28,6 +28,7 @@ const Index = () => {
       <FloatingOrbs />
       <Navbar />
       <DeepWorkOverlay />
+      <ScrollToTop />
       <HeroSection onStartStudying={handleStartStudying} />
       <PomodoroTimer ref={timerRef} />
       <WeeklyFocus />
