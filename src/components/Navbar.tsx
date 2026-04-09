@@ -13,6 +13,7 @@ const navLinks = [
 
 const Navbar = () => {
   const { isDeepWork, toggleDeepWork } = useDeepWork();
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
 
   return (
