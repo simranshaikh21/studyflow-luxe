@@ -6,8 +6,8 @@
 
 @layer base {
   :root {
-    --background: 65 92% 91%;
-    --foreground: 69 25% 30%;
+    --background: 240 100% 97%;
+    --foreground: 230 100% 70%;
 
     --card: 0 0% 100%;
     --card-foreground: 69 25% 30%;
@@ -15,17 +15,17 @@
     --popover: 0 0% 100%;
     --popover-foreground: 69 25% 30%;
 
-    --primary: 69 25% 30%;
-    --primary-foreground: 60 30% 98%;
+    --primary: 238 100% 70%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 27 100% 84%;
-    --secondary-foreground: 69 25% 20%;
+    --secondary: 238 100% 87%;
+    --secondary-foreground: 238 50% 30%;
 
     --muted: 220 14% 92%;
     --muted-foreground: 220 10% 46%;
 
-    --accent: 124 40% 76%;
-    --accent-foreground: 69 25% 20%;
+    --accent: 238 100% 80%;
+    --accent-foreground: 238 50% 30%;
 
     --success: 56 92% 71%;
     --success-foreground: 220 20% 10%;
@@ -63,7 +63,7 @@
     --popover: 220 25% 8%;
     --popover-foreground: 220 14% 92%;
 
-    --primary: 298 36% 53%;
+    --primary: 270 70% 60%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 200 100% 37%;
@@ -72,7 +72,7 @@
     --muted: 220 20% 14%;
     --muted-foreground: 220 14% 60%;
 
-    --accent: 220 20% 12%;
+    --accent: 190 90% 50%;
     --accent-foreground: 220 14% 92%;
 
     --success: 56 92% 71%;
@@ -81,13 +81,14 @@
     --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 16%;
+    --border: 220 30% 25%;
     --input: 220 20% 16%;
     --ring: 200 100% 37%;
 
-    --glass-bg: 220 25% 8% / 0.5;
-    --glass-border: 220 20% 20% / 0.4;
+    --glass-bg: 222 47% 11% / 0.45;
+    --glass-border: 217 32% 91% / 0.12;
     --glass-blur: 24px;
+    --glass: 222 47% 11% / 0.7;
 
     --sidebar-background: 220 30% 6%;
     --sidebar-foreground: 220 14% 90%;
