@@ -2,6 +2,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingOrbs from "@/components/FloatingOrbs";
 import DeepWorkOverlay from "@/components/DeepWorkOverlay";
+import BackButton from "@/components/BackButton";
+import ScrollToTop from "@/components/ScrollToTop";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, LineChart, Line, Area, AreaChart } from "recharts";
 import { TrendingUp, Zap, Target, Calendar, Flame, Award } from "lucide-react";
 
@@ -34,6 +36,8 @@ const InsightsPage = () => (
     <FloatingOrbs />
     <Navbar />
     <DeepWorkOverlay />
+    <BackButton />
+    <ScrollToTop />
     <div className="pt-24 pb-20 px-6">
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-12 animate-fade-in-up">

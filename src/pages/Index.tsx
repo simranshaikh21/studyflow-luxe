@@ -8,6 +8,7 @@ import ExamRoadmap from "@/components/ExamRoadmap";
 import Footer from "@/components/Footer";
 import FloatingOrbs from "@/components/FloatingOrbs";
 import DeepWorkOverlay from "@/components/DeepWorkOverlay";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = () => {
   const timerRef = useRef<PomodoroTimerRef>(null);
@@ -27,6 +28,7 @@ const Index = () => {
       <FloatingOrbs />
       <Navbar />
       <DeepWorkOverlay />
+      <ScrollToTop />
       <HeroSection onStartStudying={handleStartStudying} />
       <PomodoroTimer ref={timerRef} />
       <WeeklyFocus />
