@@ -12,6 +12,14 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = () => {
   const timerRef = useRef<PomodoroTimerRef>(null);
+  const [showCommit, setShowCommit] = useState(() => {
+    return !sessionStorage.getItem("studyflow-committed");
+  });
+
+  const handleCommit = useCallback(() => {
+    sessionStorage.setItem("studyflow-committed", "true");
+    setShowCommit(false);
+  }, []);
 
   const handleStartStudying = useCallback(() => {
     const dashboardEl = document.getElementById("dashboard");
