@@ -3,6 +3,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingOrbs from "@/components/FloatingOrbs";
 import DeepWorkOverlay from "@/components/DeepWorkOverlay";
+import BackButton from "@/components/BackButton";
+import ScrollToTop from "@/components/ScrollToTop";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
@@ -31,6 +33,8 @@ const SettingsPage = () => {
       <FloatingOrbs />
       <Navbar />
       <DeepWorkOverlay />
+      <BackButton />
+      <ScrollToTop />
       <div className="pt-24 pb-20 px-6">
         <div className="container mx-auto max-w-3xl">
           <div className="text-center mb-12 animate-fade-in-up">
