@@ -1,6 +1,7 @@
 import { useDeepWork } from "@/contexts/DeepWorkContext";
+import { useTheme } from "@/hooks/useTheme";
 import { Switch } from "@/components/ui/switch";
-import { Brain, Flame, Shield } from "lucide-react";
+import { Brain, Flame, Shield, Sun, Moon } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
@@ -12,6 +13,7 @@ const navLinks = [
 
 const Navbar = () => {
   const { isDeepWork, toggleDeepWork } = useDeepWork();
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
 
   return (
@@ -54,6 +56,17 @@ const Navbar = () => {
               className="data-[state=checked]:bg-primary"
             />
           </div>
+          <button
+            onClick={toggleTheme}
+            className="w-8 h-8 rounded-full bg-muted flex items-center justify-center hover:scale-110 transition-all duration-300"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? (
+              <Sun className="w-4 h-4 text-muted-foreground hover:text-primary transition-colors" />
+            ) : (
+              <Moon className="w-4 h-4 text-muted-foreground hover:text-primary transition-colors" />
+            )}
+          </button>
           <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center">
             <Brain className="w-4 h-4 text-muted-foreground" />
           </div>
